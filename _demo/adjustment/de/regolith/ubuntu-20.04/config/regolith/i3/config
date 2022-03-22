@@ -95,9 +95,27 @@ set_from_resource $i3-wm.program.terminal i3-wm.program.terminal sakura
 #set_from_resource $i3-wm.program.terminal i3-wm.program.terminal /usr/bin/x-terminal-emulator
 bindsym $i3-wm.binding.terminal exec $i3-wm.program.terminal
 
-## Launch // Browser // <Win><Shift> Enter ##
-set_from_resource $i3-wm.binding.browser i3-wm.binding.browser Shift+Return
-bindsym $mod+$i3-wm.binding.browser exec gtk-launch $(xdg-settings get default-web-browser)
+## Launch // Terminal // <Alt><Shift> a ##
+set_from_resource $i3-wm.binding.terminal_2 i3-wm.binding.terminal_2 Mod1+Shift+a
+set_from_resource $i3-wm.program.terminal_2 i3-wm.program.terminal_2 xfce4-terminal
+bindsym $i3-wm.binding.terminal_2 exec $i3-wm.program.terminal_2
+
+## Launch // Browser // <Alt><Shift> b ##
+set_from_resource $i3-wm.binding.browser i3-wm.binding.browser Mod1+Shift+b
+set_from_resource $i3-wm.program.browser i3-wm.program.browser firefox
+#set_from_resource $i3-wm.program.browser i3-wm.program.browser $(xdg-settings get default-web-browser)
+bindsym $i3-wm.binding.browser exec gtk-launch $i3-wm.program.browser
+
+## Launch // FileManager // <Alt><Shift> f ##
+set_from_resource $i3-wm.binding.file_manager i3-wm.binding.file_manager Mod1+Shift+f
+set_from_resource $i3-wm.program.file_manager i3-wm.program.file_manager pcmanfm-qt
+bindsym $i3-wm.binding.file_manager exec $i3-wm.program.file_manager
+
+## Launch // FileManager // <Alt><Shift> g ##
+set_from_resource $i3-wm.binding.file_manager_2 i3-wm.binding.file_manager_2 Mod1+Shift+g
+set_from_resource $i3-wm.program.file_manager_2 i3-wm.program.file_manager_2 thunar
+bindsym $i3-wm.binding.file_manager_2 exec $i3-wm.program.file_manager_2
+
 
 set_from_resource $rofiTheme rofi.theme /etc/regolith/styles/lascaille/rofi.rasi
 
