@@ -6,7 +6,7 @@
 
 ## 前提
 
-> 這個筆記，目前是基於「Regolith_1.6.0_focal」撰寫的。
+> 這個筆記，目前是基於「[Regolith_1.6.0_focal](https://github.com/regolith-linux/regolith-ubuntu-iso-builder/releases/tag/release-release-focal-focal_standard-1.6.0)」撰寫的。
 
 
 ## 主題

@@ -1,9 +1,9 @@
 
-# Prototype / Xfce
+# Adjustment / Regolith
 
-## For
+## For Version
 
-Regolith_1.6.0_focal
+* [Regolith_1.6.0_focal](https://github.com/regolith-linux/regolith-ubuntu-iso-builder/releases/tag/release-release-focal-focal_standard-1.6.0)
 
 ## Spec
 
