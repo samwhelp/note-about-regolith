@@ -2,6 +2,29 @@
 
 set -e
 
+################################################################################
+### Head: regolith
+##
+regolith_config_install () {
+
+	echo "## Config: regolith"
+	echo
+
+	echo "mkdir -p $HOME/.config/regolith/i3"
+	mkdir -p "$HOME/.config/regolith/i3"
+
+	echo "install -Dm644 ./config/regolith/i3/config $HOME/.config/regolith/i3/config"
+	install -Dm644 "./config/regolith/i3/config" "$HOME/.config/regolith/i3/config"
+
+
+	echo
+
+}
+##
+### Tail: regolith
+################################################################################
+
+
 
 ################################################################################
 ### Head: xfce4
@@ -427,27 +450,30 @@ gtk2_config_install () {
 ### Head: main
 ##
 main_config_install () {
-	xfce4_config_install
 
-	#theme_config_install
+	regolith_config_install
 
-	thunar_config_install
+	#xfce4_config_install
 
-	pcmanfm_qt_config_install
+	##theme_config_install
 
-	rofi_config_install
+	#thunar_config_install
 
-	xfce4_terminal_config_install
+	#pcmanfm_qt_config_install
 
-	sakura_config_install
+	#rofi_config_install
 
-	fcitx_config_install
+	#xfce4_terminal_config_install
 
-	qt5ct_config_install
+	#sakura_config_install
 
-	gtk3_config_install
+	#fcitx_config_install
 
-	gtk2_config_install
+	#qt5ct_config_install
+
+	#gtk3_config_install
+
+	#gtk2_config_install
 }
 ## start
 main_config_install

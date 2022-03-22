@@ -89,42 +89,44 @@ set_from_resource $ws10_key i3-wm.workspace.10.key 0
 # Launcher dialogs
 ###############################################################################
 
-## Launch // Terminal // <> Enter ##
-set_from_resource $i3-wm.binding.terminal i3-wm.binding.terminal Return
-bindsym $mod+$i3-wm.binding.terminal exec /usr/bin/x-terminal-emulator
+## Launch // Terminal // <Alt> Enter ##
+set_from_resource $i3-wm.binding.terminal i3-wm.binding.terminal Mod1+Return
+set_from_resource $i3-wm.program.terminal i3-wm.program.terminal sakura
+#set_from_resource $i3-wm.program.terminal i3-wm.program.terminal /usr/bin/x-terminal-emulator
+bindsym $i3-wm.binding.terminal exec $i3-wm.program.terminal
 
-## Launch // Browser // <><Shift> Enter ##
+## Launch // Browser // <Win><Shift> Enter ##
 set_from_resource $i3-wm.binding.browser i3-wm.binding.browser Shift+Return
 bindsym $mod+$i3-wm.binding.browser exec gtk-launch $(xdg-settings get default-web-browser)
 
 set_from_resource $rofiTheme rofi.theme /etc/regolith/styles/lascaille/rofi.rasi
 
-## Launch // Application // <> Space ##
-set_from_resource $i3-wm.binding.launcher.app i3-wm.binding.launcher.app space
+## Launch // Application // <Alt><Shift> d ##
+set_from_resource $i3-wm.binding.launcher.app i3-wm.binding.launcher.app Mod1+Shift+d
 set_from_resource $i3-wm.program.launcher.app i3-wm.program.launcher.app rofi -show drun -theme $rofiTheme
-bindsym $mod+$i3-wm.binding.launcher.app exec $i3-wm.program.launcher.app
+bindsym $i3-wm.binding.launcher.app exec $i3-wm.program.launcher.app
 
-## Launch // Command // <><Shift> Space ##
-set_from_resource $i3-wm.binding.launcher.cmd i3-wm.binding.launcher.cmd Shift+space
+## Launch // Command // <Alt><Shift> r ##
+set_from_resource $i3-wm.binding.launcher.cmd i3-wm.binding.launcher.cmd Mod1+Shift+r
 set_from_resource $i3-wm.program.launcher.cmd i3-wm.program.launcher.cmd rofi -show run -theme $rofiTheme
-bindsym $mod+$i3-wm.binding.launcher.cmd exec $i3-wm.program.launcher.cmd
+bindsym $i3-wm.binding.launcher.cmd exec $i3-wm.program.launcher.cmd
 
-## Navigate // Window by Name // <><Ctrl> Space ##
-set_from_resource $i3-wm.binding.launcher.window i3-wm.binding.launcher.window Ctrl+space
+## Navigate // Window by Name // <Alt><Shift> w ##
+set_from_resource $i3-wm.binding.launcher.window i3-wm.binding.launcher.window Mod1+Shift+w
 set_from_resource $i3-wm.program.launcher.window i3-wm.program.launcher.window rofi -show window -theme $rofiTheme
-bindsym $mod+$i3-wm.binding.launcher.window exec $i3-wm.program.launcher.window
+bindsym $i3-wm.binding.launcher.window exec $i3-wm.program.launcher.window
 
-## Launch // This Dialog // <><Shift> ? ##
-set_from_resource $i3-wm.binding.help i3-wm.binding.help Shift+question
+## Launch // This Dialog // <Alt><Shift> ? ##
+set_from_resource $i3-wm.binding.help i3-wm.binding.help Mod1+Shift+question
 set_from_resource $i3-wm.program.help i3-wm.program.help /usr/bin/remontoire-toggle
-bindsym $mod+$i3-wm.binding.help exec --no-startup-id $i3-wm.program.help
+bindsym $i3-wm.binding.help exec --no-startup-id $i3-wm.program.help
 
-## Launch // File Search // <><Alt> Space ##
+## Launch // File Search // <Win><Alt> Space ##
 set_from_resource $i3-wm.binding.file_search i3-wm.binding.file_search Mod1+space
 set_from_resource $i3-wm.program.file_search i3-wm.program.file_search rofi -show find -modi find:/usr/share/rofi/modi/finder.sh
 bindsym $mod+$i3-wm.binding.file_search exec $i3-wm.program.file_search
 
-## Launch // Look Selector // <><Alt> l ##
+## Launch // Look Selector // <Win><Alt> l ##
 set_from_resource $i3-wm.binding.look_selector i3-wm.binding.look_selector Mod1+l
 set_from_resource $i3-wm.program.look_selector i3-wm.program.look_selector rofi -show look -modi look:/usr/share/rofi/modi/look-selector.sh
 bindsym $mod+$i3-wm.binding.look_selector exec $i3-wm.program.look_selector
@@ -133,89 +135,98 @@ bindsym $mod+$i3-wm.binding.look_selector exec $i3-wm.program.look_selector
 # Window and Workspace Navigation
 ###############################################################################
 
-## Navigate // Relative Parent // <> a ##/
-set_from_resource $i3-wm.binding.focus_parent i3-wm.binding.focus_parent a
-bindsym $mod+$i3-wm.binding.focus_parent focus parent
+## Navigate // Relative Parent // <Win> p ##/
+set_from_resource $i3-wm.binding.focus_parent i3-wm.binding.focus_parent Mod4+p
+bindsym $i3-wm.binding.focus_parent focus parent
 
-## Navigate // Relative Child // <> z ##/
-set_from_resource $i3-wm.binding.focus_child i3-wm.binding.focus_child z
-bindsym $mod+$i3-wm.binding.focus_child focus child
+## Navigate // Relative Child // <Win> c ##/
+set_from_resource $i3-wm.binding.focus_child i3-wm.binding.focus_child Mod4+c
+bindsym $i3-wm.binding.focus_child focus child
 
-## Navigate // Relative Window // <> ↑ ↓ ← → ##
-bindsym $mod+Left focus left
-bindsym $mod+Down focus down
+
+## Navigate // Relative Window // <Win> a s ##
+set_from_resource $i3-wm.binding.focus_prev i3-wm.binding.focus_prev Mod4+a
+set_from_resource $i3-wm.binding.focus_next i3-wm.binding.focus_next Mod4+s
+bindsym $i3-wm.binding.focus_prev focus prev
+bindsym $i3-wm.binding.focus_next focus next
+
+
+### Navigate // Relative Window // <Win> ↑ ↓ ← → ##
 bindsym $mod+Up focus up
+bindsym $mod+Down focus down
+bindsym $mod+Left focus left
 bindsym $mod+Right focus right
 
-## Navigate // Relative Window // <> k j h l ##
-set_from_resource $i3-wm.binding.left i3-wm.binding.left h
-set_from_resource $i3-wm.binding.right i3-wm.binding.right l
+### Navigate // Relative Window // <Win> k j h l ##
 set_from_resource $i3-wm.binding.up i3-wm.binding.up k
 set_from_resource $i3-wm.binding.down i3-wm.binding.down j
-bindsym $mod+$i3-wm.binding.left focus left
-bindsym $mod+$i3-wm.binding.down focus down
+set_from_resource $i3-wm.binding.left i3-wm.binding.left h
+set_from_resource $i3-wm.binding.right i3-wm.binding.right l
 bindsym $mod+$i3-wm.binding.up focus up
+bindsym $mod+$i3-wm.binding.down focus down
+bindsym $mod+$i3-wm.binding.left focus left
 bindsym $mod+$i3-wm.binding.right focus right
 
-## Navigate // Workspaces 1-10 // <> 0..9 ##
-bindsym $mod+$ws1_key workspace number $ws1
-bindsym $mod+$ws2_key workspace number $ws2
-bindsym $mod+$ws3_key workspace number $ws3
-bindsym $mod+$ws4_key workspace number $ws4
-bindsym $mod+$ws5_key workspace number $ws5
-bindsym $mod+$ws6_key workspace number $ws6
-bindsym $mod+$ws7_key workspace number $ws7
-bindsym $mod+$ws8_key workspace number $ws8
-bindsym $mod+$ws9_key workspace number $ws9
-bindsym $mod+$ws10_key workspace number $ws10
-## Navigate // Workspace 11 - 19 // <><Ctrl> 1..9 ##
-bindsym $mod+Ctrl+$ws1_key workspace number $ws11
-bindsym $mod+Ctrl+$ws2_key workspace number $ws12
-bindsym $mod+Ctrl+$ws3_key workspace number $ws13
-bindsym $mod+Ctrl+$ws4_key workspace number $ws14
-bindsym $mod+Ctrl+$ws5_key workspace number $ws15
-bindsym $mod+Ctrl+$ws6_key workspace number $ws16
-bindsym $mod+Ctrl+$ws7_key workspace number $ws17
-bindsym $mod+Ctrl+$ws8_key workspace number $ws18
-bindsym $mod+Ctrl+$ws9_key workspace number $ws19
 
-## Navigate // Next Workspace // <> Tab ##
+## Navigate // Workspaces 1-10 // <Alt> 0..9 ##
+bindsym Mod1+$ws1_key workspace number $ws1
+bindsym Mod1+$ws2_key workspace number $ws2
+bindsym Mod1+$ws3_key workspace number $ws3
+bindsym Mod1+$ws4_key workspace number $ws4
+bindsym Mod1+$ws5_key workspace number $ws5
+bindsym Mod1+$ws6_key workspace number $ws6
+bindsym Mod1+$ws7_key workspace number $ws7
+bindsym Mod1+$ws8_key workspace number $ws8
+bindsym Mod1+$ws9_key workspace number $ws9
+bindsym Mod1+$ws10_key workspace number $ws10
+## Navigate // Workspace 11 - 19 // <Alt><Ctrl> 1..9 ##
+bindsym Mod1+Ctrl+$ws1_key workspace number $ws11
+bindsym Mod1+Ctrl+$ws2_key workspace number $ws12
+bindsym Mod1+Ctrl+$ws3_key workspace number $ws13
+bindsym Mod1+Ctrl+$ws4_key workspace number $ws14
+bindsym Mod1+Ctrl+$ws5_key workspace number $ws15
+bindsym Mod1+Ctrl+$ws6_key workspace number $ws16
+bindsym Mod1+Ctrl+$ws7_key workspace number $ws17
+bindsym Mod1+Ctrl+$ws8_key workspace number $ws18
+bindsym Mod1+Ctrl+$ws9_key workspace number $ws19
+
+## Navigate // Next Workspace // <Win> Tab ##
 set_from_resource $i3-wm.binding.ws_next i3-wm.binding.ws_next Tab
 bindsym $mod+$i3-wm.binding.ws_next workspace next
 
-## Navigate // Next Workspace // <><Alt> → ##
+## Navigate // Next Workspace // <Win><Alt> → ##
 set_from_resource $i3-wm.binding.ws_next2 i3-wm.binding.ws_next2 Mod1+Right
 bindsym $mod+$i3-wm.binding.ws_next2 workspace next
 
-## Navigate // Next Workspace on Output // <><Ctrl> Tab ##
+## Navigate // Next Workspace on Output // <Win><Ctrl> Tab ##
 set_from_resource $i3-wm.binding.ws_next_on_output i3-wm.binding.ws_next_on_output Ctrl+Tab
 bindsym $mod+$i3-wm.binding.ws_next_on_output workspace next_on_output
 
-## Navigate // Next Workspace on Output // <><Ctrl> l ##
+## Navigate // Next Workspace on Output // <Win><Ctrl> l ##
 set_from_resource $i3-wm.binding.ws_next_on_output2 i3-wm.binding.ws_next_on_output2 Ctrl+l
 bindsym $mod+$i3-wm.binding.ws_next_on_output2 workspace next_on_output
 
-## Navigate // Previous Workspace // <><Shift> Tab ##
+## Navigate // Previous Workspace // <Win><Shift> Tab ##
 set_from_resource $i3-wm.binding.ws_prev i3-wm.binding.ws_prev Shift+Tab
 bindsym $mod+$i3-wm.binding.ws_prev workspace prev
 
-## Navigate // Previous Workspace // <><Alt> ← ##
+## Navigate // Previous Workspace // <Win><Alt> ← ##
 set_from_resource $i3-wm.binding.ws_prev2 i3-wm.binding.ws_prev2 Mod1+Left
 bindsym $mod+$i3-wm.binding.ws_prev2 workspace prev
 
-## Navigate // Previous Workspace on Output // <><Ctrl><Shift> Tab ##
+## Navigate // Previous Workspace on Output // <Win><Ctrl><Shift> Tab ##
 set_from_resource $i3-wm.binding.ws_prev_on_output i3-wm.binding.ws_prev_on_output Ctrl+Shift+Tab
 bindsym $mod+$i3-wm.binding.ws_prev_on_output workspace prev_on_output
 
-## Navigate // Previous Workspace on Output // <><Ctrl> h ##
+## Navigate // Previous Workspace on Output // <Win><Ctrl> h ##
 set_from_resource $i3-wm.binding.ws_prev_on_output2 i3-wm.binding.ws_prev_on_output2 Ctrl+h
 bindsym $mod+$i3-wm.binding.ws_prev_on_output2 workspace prev_on_output
 
-## Navigate // Next Free Workspace // <> ` ##
+## Navigate // Next Free Workspace // <Win> ` ##
 set_from_resource $i3-wm.binding.next_free i3-wm.binding.next_free grave
 bindsym $mod+$i3-wm.binding.next_free exec --no-startup-id /usr/bin/i3-next-workspace
 
-## Navigate // Scratchpad // <><Ctrl> a ##
+## Navigate // Scratchpad // <Win><Ctrl> a ##
 set_from_resource $i3-wm.binding.scratchpad i3-wm.binding.scratchpad Ctrl+a
 bindsym $mod+$i3-wm.binding.scratchpad scratchpad show
 
@@ -223,13 +234,13 @@ bindsym $mod+$i3-wm.binding.scratchpad scratchpad show
 # Window and Workspace Configuration
 ###############################################################################
 
-## Modify // Window Position // <><Shift> ↑ ↓ ← → ##
+## Modify // Window Position // <Win><Shift> ↑ ↓ ← → ##
 bindsym $mod+Shift+Left move left
 bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
-## Modify // Window Position // <><Shift> k j h l ##
+## Modify // Window Position // <Win><Shift> k j h l ##
 set_from_resource $i3-wm.binding.move_left i3-wm.binding.move_left Shift+h
 set_from_resource $i3-wm.binding.move_right i3-wm.binding.move_right Shift+l
 set_from_resource $i3-wm.binding.move_up i3-wm.binding.move_up Shift+k
@@ -239,13 +250,13 @@ bindsym $mod+$i3-wm.binding.move_down move down
 bindsym $mod+$i3-wm.binding.move_up move up
 bindsym $mod+$i3-wm.binding.move_right move right
 
-## Modify // Containing Workspace // <><Ctrl><Shift> ↑ ↓ ← → ##
+## Modify // Containing Workspace // <Win><Ctrl><Shift> ↑ ↓ ← → ##
 bindsym $mod+Ctrl+Shift+Left move workspace to output left
 bindsym $mod+Ctrl+Shift+Down move workspace to output down
 bindsym $mod+Ctrl+Shift+Up move workspace to output up
 bindsym $mod+Ctrl+Shift+Right move workspace to output right
 
-## Modify // Containing Workspace // <><Ctrl><Shift> k j h l ##
+## Modify // Containing Workspace // <Win><Ctrl><Shift> k j h l ##
 set_from_resource $i3-wm.binding.take_left i3-wm.binding.take_left Ctrl+Shift+h
 set_from_resource $i3-wm.binding.take_right i3-wm.binding.take_right Ctrl+Shift+l
 set_from_resource $i3-wm.binding.take_up i3-wm.binding.take_up Ctrl+Shift+k
@@ -255,66 +266,66 @@ bindsym $mod+$i3-wm.binding.take_down move workspace to output down
 bindsym $mod+$i3-wm.binding.take_up move workspace to output up
 bindsym $mod+$i3-wm.binding.take_right move workspace to output right
 
-## Modify // Vertical Window Orientation // <> v ##
+## Modify // Vertical Window Orientation // <Win> v ##
 set_from_resource $i3-wm.binding.split_v i3-wm.binding.split_v v
 bindsym $mod+$i3-wm.binding.split_v split vertical
 
-## Modify // Horizontal Window Orientation // <> g ##
+## Modify // Horizontal Window Orientation // <Win> g ##
 set_from_resource $i3-wm.binding.split_h i3-wm.binding.split_h g
 bindsym $mod+$i3-wm.binding.split_h split horizontal
 
-## Modify // Toggle Window Orientation // <> Backspace ##
+## Modify // Toggle Window Orientation // <Win> Backspace ##
 set_from_resource $i3-wm.binding.orientation_toggle i3-wm.binding.orientation_toggle BackSpace
 bindsym $mod+$i3-wm.binding.orientation_toggle split toggle
 
-## Modify // Window Fullscreen Toggle // <> f ##
+## Modify // Window Fullscreen Toggle // <Win> f ##
 set_from_resource $i3-wm.binding.fullscreen_toggle i3-wm.binding.fullscreen_toggle f
 bindsym $mod+$i3-wm.binding.fullscreen_toggle fullscreen toggle
 
-## Modify // Window Floating Toggle // <><Shift> f ##
+## Modify // Window Floating Toggle // <Win><Shift> f ##
 set_from_resource $i3-wm.binding.float_toggle i3-wm.binding.float_toggle Shift+f
 bindsym $mod+Shift+$i3-wm.binding.float_toggle floating toggle
 
-## Modify // Move to Scratchpad // <><Ctrl> m ##
+## Modify // Move to Scratchpad // <Win><Ctrl> m ##
 set_from_resource $i3-wm.binding.move_scratchpad i3-wm.binding.move_scratchpad Ctrl+m
 bindsym $mod+$i3-wm.binding.move_scratchpad move to scratchpad
 
-## Modify // Tile/Float Focus Toggle // <><Shift> t ##
+## Modify // Tile/Float Focus Toggle // <Win><Shift> t ##
 set_from_resource $i3-wm.binding.focus_toggle i3-wm.binding.focus_toggle Shift+t
 bindsym $mod+$i3-wm.binding.focus_toggle focus mode_toggle
 
-## Modify // Window Layout Mode // <> t ##
+## Modify // Window Layout Mode // <Win> t ##
 set_from_resource $i3-wm.binding.layout_mode i3-wm.binding.layout_mode t
 bindsym $mod+$i3-wm.binding.layout_mode layout toggle tabbed splith splitv
 
-## Modify // Move Window to Workspace 1 - 10 // <><Shift> 0..9 ##
-bindsym $mod+Shift+$ws1_key move container to workspace number $ws1
-bindsym $mod+Shift+$ws2_key move container to workspace number $ws2
-bindsym $mod+Shift+$ws3_key move container to workspace number $ws3
-bindsym $mod+Shift+$ws4_key move container to workspace number $ws4
-bindsym $mod+Shift+$ws5_key move container to workspace number $ws5
-bindsym $mod+Shift+$ws6_key move container to workspace number $ws6
-bindsym $mod+Shift+$ws7_key move container to workspace number $ws7
-bindsym $mod+Shift+$ws8_key move container to workspace number $ws8
-bindsym $mod+Shift+$ws9_key move container to workspace number $ws9
-bindsym $mod+Shift+$ws10_key move container to workspace number $ws10
-## Modify // Move Window to Workspace 11 - 19// <><Ctrl><Shift> 1..9 ##
-bindsym $mod+Shift+Ctrl+$ws1_key move container to workspace number $ws11
-bindsym $mod+Shift+Ctrl+$ws2_key move container to workspace number $ws12
-bindsym $mod+Shift+Ctrl+$ws3_key move container to workspace number $ws13
-bindsym $mod+Shift+Ctrl+$ws4_key move container to workspace number $ws14
-bindsym $mod+Shift+Ctrl+$ws5_key move container to workspace number $ws15
-bindsym $mod+Shift+Ctrl+$ws6_key move container to workspace number $ws16
-bindsym $mod+Shift+Ctrl+$ws7_key move container to workspace number $ws17
-bindsym $mod+Shift+Ctrl+$ws8_key move container to workspace number $ws18
-bindsym $mod+Shift+Ctrl+$ws9_key move container to workspace number $ws19
+## Modify // Move Window to Workspace 1 - 10 // <Win> 0..9 ##
+bindsym Mod4+$ws1_key move container to workspace number $ws1
+bindsym Mod4+$ws2_key move container to workspace number $ws2
+bindsym Mod4+$ws3_key move container to workspace number $ws3
+bindsym Mod4+$ws4_key move container to workspace number $ws4
+bindsym Mod4+$ws5_key move container to workspace number $ws5
+bindsym Mod4+$ws6_key move container to workspace number $ws6
+bindsym Mod4+$ws7_key move container to workspace number $ws7
+bindsym Mod4+$ws8_key move container to workspace number $ws8
+bindsym Mod4+$ws9_key move container to workspace number $ws9
+bindsym Mod4+$ws10_key move container to workspace number $ws10
+## Modify // Move Window to Workspace 11 - 19// <Win><Ctrl> 1..9 ##
+bindsym Mod4+Ctrl+$ws1_key move container to workspace number $ws11
+bindsym Mod4+Ctrl+$ws2_key move container to workspace number $ws12
+bindsym Mod4+Ctrl+$ws3_key move container to workspace number $ws13
+bindsym Mod4+Ctrl+$ws4_key move container to workspace number $ws14
+bindsym Mod4+Ctrl+$ws5_key move container to workspace number $ws15
+bindsym Mod4+Ctrl+$ws6_key move container to workspace number $ws16
+bindsym Mod4+Ctrl+$ws7_key move container to workspace number $ws17
+bindsym Mod4+Ctrl+$ws8_key move container to workspace number $ws18
+bindsym Mod4+Ctrl+$ws9_key move container to workspace number $ws19
 
-## Modify // Move Window to Next Free Workspace // <><Shift> ` ##
+## Modify // Move Window to Next Free Workspace // <Win><Shift> ` ##
 set_from_resource $i3-wm.binding.move_next_free i3-wm.binding.move_next_free Shift+grave
 bindsym $mod+$i3-wm.binding.move_next_free exec --no-startup-id /usr/bin/i3-next-workspace --move-window
 
 # move focused container to workspace, move to workspace
-## Modify // Carry Window to Workspace 1 - 10// <><Alt> 0..9 ##
+## Modify // Carry Window to Workspace 1 - 10// <Win><Alt> 0..9 ##
 bindsym $mod+$alt+$ws1_key move container to workspace number $ws1; workspace number $ws1
 bindsym $mod+$alt+$ws2_key move container to workspace number $ws2; workspace number $ws2
 bindsym $mod+$alt+$ws3_key move container to workspace number $ws3; workspace number $ws3
@@ -325,7 +336,7 @@ bindsym $mod+$alt+$ws7_key move container to workspace number $ws7; workspace nu
 bindsym $mod+$alt+$ws8_key move container to workspace number $ws8; workspace number $ws8
 bindsym $mod+$alt+$ws9_key move container to workspace number $ws9; workspace number $ws9
 bindsym $mod+$alt+$ws10_key move container to workspace number $ws10; workspace number $ws10
-## Modify // Carry Window to Workspace 11 - 19 // <><Alt><Ctrl> 1..9 ##
+## Modify // Carry Window to Workspace 11 - 19 // <Win><Alt><Ctrl> 1..9 ##
 bindsym $mod+$alt+Ctrl+$ws1_key move container to workspace number $ws11; workspace number $ws11
 bindsym $mod+$alt+Ctrl+$ws2_key move container to workspace number $ws12; workspace number $ws12
 bindsym $mod+$alt+Ctrl+$ws3_key move container to workspace number $ws13; workspace number $ws13
@@ -336,7 +347,7 @@ bindsym $mod+$alt+Ctrl+$ws7_key move container to workspace number $ws17; worksp
 bindsym $mod+$alt+Ctrl+$ws8_key move container to workspace number $ws18; workspace number $ws18
 bindsym $mod+$alt+Ctrl+$ws9_key move container to workspace number $ws19; workspace number $ws19
 
-## Modify // Carry Window to Next Free Workspace // <><Alt> ` ##
+## Modify // Carry Window to Next Free Workspace // <Win><Alt> ` ##
 set_from_resource $i3-wm.binding.take_next_free i3-wm.binding.take_next_free Mod1+grave
 bindsym $mod+$i3-wm.binding.take_next_free exec --no-startup-id /usr/bin/i3-next-workspace --move-window-and-follow
 
@@ -356,87 +367,87 @@ workspace_layout $i3-wm.workspace.layout
 # Session Management
 ###############################################################################
 
-## Session // Exit App // <><Shift> q ##
-set_from_resource $i3-wm.binding.exit_app i3-wm.binding.exit_app Shift+q
-bindsym $mod+$i3-wm.binding.exit_app [con_id="__focused__"] kill
+## Session // Exit App // <Win> q ##
+set_from_resource $i3-wm.binding.exit_app i3-wm.binding.exit_app Mod4+q
+bindsym $i3-wm.binding.exit_app [con_id="__focused__"] kill
 
-## Session // Terminate App // <><Alt> q ##
-set_from_resource $i3-wm.binding.kill_app i3-wm.binding.kill_app Mod1+q
-bindsym $mod+$i3-wm.binding.kill_app [con_id="__focused__"] exec --no-startup-id kill -9 $(xdotool getwindowfocus getwindowpid)
+## Session // Terminate App // <Win><Shift> q ##
+set_from_resource $i3-wm.binding.kill_app i3-wm.binding.kill_app Mod4+Shift+q
+bindsym $i3-wm.binding.kill_app [con_id="__focused__"] exec --no-startup-id kill -9 $(xdotool getwindowfocus getwindowpid)
 
-## Session // Reload i3 Config // <><Shift> c ##
-set_from_resource $i3-wm.binding.reload i3-wm.binding.reload Shift+c
-bindsym $mod+$i3-wm.binding.reload reload
+## Session // Reload i3 Config // <Alt><Shift> c ##
+set_from_resource $i3-wm.binding.reload i3-wm.binding.reload Mod1+Shift+c
+bindsym $i3-wm.binding.reload reload
 
-## Session // Refresh Session // <><Shift> r ##
-set_from_resource $i3-wm.binding.refresh i3-wm.binding.refresh Shift+r
+## Session // Refresh Session // <Alt><Ctrl> c ##
+set_from_resource $i3-wm.binding.refresh i3-wm.binding.refresh Mod1+Ctrl+c
 set_from_resource $i3-wm.program.refresh_ui i3-wm.program.refresh_ui /usr/bin/regolith-look refresh
-bindsym $mod+$i3-wm.binding.refresh exec --no-startup-id $i3-wm.program.refresh_ui
+bindsym $i3-wm.binding.refresh exec --no-startup-id $i3-wm.program.refresh_ui
 
-## Session // Restart i3 // <><Ctrl> r ##
-set_from_resource $i3-wm.binding.restart i3-wm.binding.restart Ctrl+r
-bindsym $mod+$i3-wm.binding.restart restart
+## Session // Restart i3 // <Alt><Ctrl> x ##
+set_from_resource $i3-wm.binding.restart i3-wm.binding.restart Mod1+Ctrl+x
+bindsym $i3-wm.binding.restart restart
 
-## Session // Logout // <><Shift> e ##
-set_from_resource $i3-wm.binding.logout i3-wm.binding.logout Shift+e
+## Session // Logout // <Alt><Shift> x ##
+set_from_resource $i3-wm.binding.logout i3-wm.binding.logout Mod1+Shift+x
 set_from_resource $i3-wm.program.logout i3-wm.program.logout /usr/bin/gnome-session-quit --logout
-bindsym $mod+$i3-wm.binding.logout exec $i3-wm.program.logout
+bindsym $i3-wm.binding.logout exec $i3-wm.program.logout
 
-## Session // Reboot // <><Shift> b ##
-set_from_resource $i3-wm.binding.reboot i3-wm.binding.reboot Shift+b
+## Session // Reboot // <Alt><Ctrl> z ##
+set_from_resource $i3-wm.binding.reboot i3-wm.binding.reboot Mod1+Ctrl+z
 set_from_resource $i3-wm.program.reboot i3-wm.program.reboot /usr/bin/gnome-session-quit --reboot
-bindsym $mod+$i3-wm.binding.reboot exec $i3-wm.program.reboot
+bindsym $i3-wm.binding.reboot exec $i3-wm.program.reboot
 
-## Session // Power Down // <><Shift> p ##
-set_from_resource $i3-wm.binding.shutdown i3-wm.binding.shutdown Shift+p
+## Session // Power Down // <Alt><Shift> z ##
+set_from_resource $i3-wm.binding.shutdown i3-wm.binding.shutdown Mod1+Shift+z
 set_from_resource $i3-wm.program.shutdown i3-wm.program.shutdown /usr/bin/gnome-session-quit --power-off
-bindsym $mod+$i3-wm.binding.shutdown exec $i3-wm.program.shutdown
+bindsym $i3-wm.binding.shutdown exec $i3-wm.program.shutdown
 
-## Session // Lock Screen // <> Escape ##
-set_from_resource $i3-wm.binding.lock i3-wm.binding.lock Escape
+## Session // Lock Screen // <Win> Escape ##
+set_from_resource $i3-wm.binding.lock i3-wm.binding.lock Mod4+Escape
 set_from_resource $i3-wm.program.lock i3-wm.program.lock dbus-send --type=method_call --dest=org.gnome.ScreenSaver /org/gnome/ScreenSaver org.gnome.ScreenSaver.Lock
-bindsym $mod+$i3-wm.binding.lock exec $i3-wm.program.lock
+bindsym $i3-wm.binding.lock exec $i3-wm.program.lock
 
-## Session // Sleep // <><Shift> s ##
-set_from_resource $i3-wm.binding.sleep i3-wm.binding.sleep Shift+s
+## Session // Sleep // <Win><Shift> s ##
+set_from_resource $i3-wm.binding.sleep i3-wm.binding.sleep Mod4+Shift+s
 set_from_resource $i3-wm.program.sleep i3-wm.program.sleep systemctl suspend
-bindsym $mod+$i3-wm.binding.sleep exec $i3-wm.program.sleep
+bindsym $i3-wm.binding.sleep exec $i3-wm.program.sleep
 
 ###############################################################################
 # System Management
 ###############################################################################
 
-## Modify // Settings // <> c ##
-set_from_resource $i3-wm.binding.settings i3-wm.binding.settings c
+## Modify // Settings // <Win><Ctrl> c ##
+set_from_resource $i3-wm.binding.settings i3-wm.binding.settings Mod4+Ctrl+c
 set_from_resource $i3-wm.program.settings i3-wm.program.settings gnome-control-center --class=floating_window
-bindsym $mod+$i3-wm.binding.settings exec $i3-wm.program.settings
+bindsym $i3-wm.binding.settings exec $i3-wm.program.settings
 
-## Modify // Display Settings // <> d ##
+## Modify // Display Settings // <Win> d ##
 set_from_resource $i3-wm.binding.display i3-wm.binding.display d
 set_from_resource $i3-wm.program.display i3-wm.program.display gnome-control-center --class=floating_window display
 bindsym $mod+$i3-wm.binding.display exec $i3-wm.program.display
 
-## Modify // Wifi Settings // <> w ##
+## Modify // Wifi Settings // <Win> w ##
 set_from_resource $i3-wm.binding.wifi i3-wm.binding.wifi w
 set_from_resource $i3-wm.program.wifi i3-wm.program.wifi gnome-control-center --class=floating_window wifi
 bindsym $mod+$i3-wm.binding.wifi exec $i3-wm.program.wifi
 
-## Modify // Bluetooth Settings // <> b ##
+## Modify // Bluetooth Settings // <Win> b ##
 set_from_resource $i3-wm.binding.bluetooth i3-wm.binding.bluetooth b
 set_from_resource $i3-wm.program.bluetooth i3-wm.program.bluetooth gnome-control-center --class=floating_window bluetooth
 bindsym $mod+$i3-wm.binding.bluetooth exec $i3-wm.program.bluetooth
 
-## Modify // Sound Settings // <> s ##
-set_from_resource $i3-wm.binding.sound i3-wm.binding.sound s
+## Modify // Sound Settings // <Win><Ctrl> s ##
+set_from_resource $i3-wm.binding.sound i3-wm.binding.sound Mod4+Ctrl+s
 set_from_resource $i3-wm.program.sound i3-wm.program.sound gnome-control-center --class=floating_window sound
-bindsym $mod+$i3-wm.binding.sound exec $i3-wm.program.sound
+bindsym $i3-wm.binding.sound exec $i3-wm.program.sound
 
-## Launch // File Browser // <><Shift> n ##
+## Launch // File Browser // <Win><Shift> n ##
 set_from_resource $i3-wm.binding.files i3-wm.binding.files Shift+n
 set_from_resource $i3-wm.program.files i3-wm.program.files /usr/bin/nautilus --new-window
 bindsym $mod+$i3-wm.binding.files exec $i3-wm.program.files
 
-## Launch // Notification Viewer // <> n ##
+## Launch // Notification Viewer // <Win> n ##
 set_from_resource $i3-wm.binding.notification_ui i3-wm.binding.notification_ui n
 set_from_resource $i3-wm.program.notification_ui i3-wm.program.notification_ui /usr/bin/rofication-gui
 bindsym $mod+$i3-wm.binding.notification_ui exec $i3-wm.program.notification_ui
@@ -446,15 +457,15 @@ bindsym $mod+$i3-wm.binding.notification_ui exec $i3-wm.program.notification_ui
 ###############################################################################
 
 # i3-snapshot for load/save current layout
-## Modify // Save Window Layout // <> , ##
+## Modify // Save Window Layout // <Win> , ##
 set_from_resource $i3-wm.binding.save_layout i3-wm.binding.save_layout comma
 bindsym $mod+$i3-wm.binding.save_layout  exec /usr/bin/i3-snapshot -o > /tmp/i3-snapshot
-## Modify // Load Window Layout // <> . ##
+## Modify // Load Window Layout // <Win> . ##
 set_from_resource $i3-wm.binding.load_layout i3-wm.binding.load_layout period
 bindsym $mod+$i3-wm.binding.load_layout exec /usr/bin/i3-snapshot -c < /tmp/i3-snapshot
 
 # Toggle bar visibility
-## Modify // Toggle Bar // <> i ##
+## Modify // Toggle Bar // <Win> i ##
 set_from_resource $i3-wm.binding.bar_toggle i3-wm.binding.bar_toggle i
 bindsym $mod+$i3-wm.binding.bar_toggle bar mode toggle
 
@@ -475,7 +486,7 @@ set_from_resource $i3-wm.binding.dec_gaps i3-wm.binding.dec_gaps minus
 set_from_resource $i3-wm.binding.inc_gaps_big i3-wm.binding.inc_gaps_big Shift+plus
 set_from_resource $i3-wm.binding.dec_gaps_big i3-wm.binding.dec_gaps_big Shift+minus
 
-## Resize // Enter Resize Mode // <> r ##
+## Resize // Enter Resize Mode // <Win> r ##
 mode "Resize Mode" {
         # These bindings trigger as soon as you enter the resize mode
 
