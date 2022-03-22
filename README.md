@@ -25,6 +25,12 @@
 | [Boot ISO By GRUB](https://samwhelp.github.io/note-about-regolith/read/start/download/boot_iso_by_grub.html) |
 
 
+| 議題 |
+| --- |
+| [在Ubuntu上安裝 ](https://samwhelp.github.io/note-about-regolith/read/start/install.html) |
+| [Look](https://samwhelp.github.io/note-about-regolith/read/start/look.html) |
+
+
 ## samwhelp
 
 * [個人筆記](https://samwhelp.github.io/book/)
