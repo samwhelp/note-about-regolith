@@ -151,7 +151,7 @@ bindsym $mod+$i3-wm.binding.look_selector exec $i3-wm.program.look_selector
 
 
 ###############################################################################
-# wallpaper
+# Wallpaper
 ###############################################################################
 
 ## Wallpaper // Select Shuf // <Alt> w ##
@@ -163,6 +163,51 @@ bindsym $i3-wm.binding.wallpaper.shuf exec $i3-wm.program.wallpaper.shuf
 set_from_resource $i3-wm.binding.wallpaper.default i3-wm.binding.wallpaper.default Mod1+Ctrl+w
 set_from_resource $i3-wm.program.wallpaper.default i3-wm.program.wallpaper.default feh --bg-fill ~/Pictures/Wallpaper/default.jpg
 bindsym $i3-wm.binding.wallpaper.default exec $i3-wm.program.wallpaper.default
+
+
+###############################################################################
+# Volume
+###############################################################################
+
+## Volume // VolumeControl // <Alt><Shift> v ##
+set_from_resource $i3-wm.binding.volume.control i3-wm.volume.control Mod1+Shift+v
+set_from_resource $i3-wm.program.volume.control i3-wm.program.control mate-volume-control
+bindsym $i3-wm.binding.volume.control exec $i3-wm.program.volume.control
+
+## Volume // VolumeToggleMute // <Alt> m ##
+set_from_resource $i3-wm.binding.volume.toggle.mute i3-wm.volume.toggle.mute Mod1+m
+set_from_resource $i3-wm.program.volume.toggle.mute i3-wm.program.toggle.mute amixer -q -D pulse sset Master toggle
+bindsym $i3-wm.binding.volume.toggle.mute exec --no-startup-id $i3-wm.program.volume.toggle.mute
+
+## Volume // VolumeDecrease // <Alt><Shift> ,  (<) ##
+set_from_resource $i3-wm.binding.volume.toggle.volume_decrease i3-wm.volume.toggle.volume_decrease Mod1+Shift+comma
+set_from_resource $i3-wm.program.volume.toggle.volume_decrease i3-wm.program.toggle.volume_decrease amixer -q -D pulse sset Master 5%- unmute
+bindsym $i3-wm.binding.volume.toggle.volume_decrease exec --no-startup-id $i3-wm.program.volume.toggle.volume_decrease
+
+## Volume // VolumeIncrease // <Alt><Shift> .  (>) ##
+set_from_resource $i3-wm.binding.volume.toggle.volume_increase i3-wm.volume.toggle.volume_increase Mod1+Shift+period
+set_from_resource $i3-wm.program.volume.toggle.volume_increase i3-wm.program.toggle.volume_increase amixer -q -D pulse sset Master 5%+ unmute
+bindsym $i3-wm.binding.volume.toggle.volume_increase exec --no-startup-id $i3-wm.program.volume.toggle.volume_increase
+
+## Volume // VolumeDecreaseSlowly // <Alt><Ctrl> ,  (<) ##
+set_from_resource $i3-wm.binding.volume.toggle.volume_decrease_slowly i3-wm.volume.toggle.volume_decrease_slowly Mod1+Ctrl+comma
+set_from_resource $i3-wm.program.volume.toggle.volume_decrease_slowly i3-wm.program.toggle.volume_decrease_slowly amixer -q -D pulse sset Master 1%- unmute
+bindsym $i3-wm.binding.volume.toggle.volume_decrease_slowly exec --no-startup-id $i3-wm.program.volume.toggle.volume_decrease_slowly
+
+## Volume // VolumeIncreaseSlowly // <Alt><Ctrl> .  (>) ##
+set_from_resource $i3-wm.binding.volume.toggle.volume_increase_slowly i3-wm.volume.toggle.volume_increase_slowly Mod1+Ctrl+period
+set_from_resource $i3-wm.program.volume.toggle.volume_increase_slowly i3-wm.program.toggle.volume_increase_slowly amixer -q -D pulse sset Master 1%+ unmute
+bindsym $i3-wm.binding.volume.toggle.volume_increase_slowly exec --no-startup-id $i3-wm.program.volume.toggle.volume_increase_slowly
+
+
+## Volume // VolumeToggleMute // XF86AudioMute ##
+bindsym XF86AudioMute exec --no-startup-id $i3-wm.program.volume.toggle.mute
+
+## Volume // VolumeDecrease // XF86AudioLowerVolume ##
+bindsym XF86AudioLowerVolume exec --no-startup-id $i3-wm.program.volume.toggle.volume_decrease
+
+## Volume // VolumeIncrease // XF86AudioRaiseVolume ##
+bindsym XF86AudioRaiseVolume exec --no-startup-id $i3-wm.program.volume.toggle.volume_increase
 
 
 ###############################################################################
