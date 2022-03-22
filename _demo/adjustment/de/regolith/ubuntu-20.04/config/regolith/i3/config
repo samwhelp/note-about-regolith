@@ -149,6 +149,22 @@ set_from_resource $i3-wm.binding.look_selector i3-wm.binding.look_selector Mod1+
 set_from_resource $i3-wm.program.look_selector i3-wm.program.look_selector rofi -show look -modi look:/usr/share/rofi/modi/look-selector.sh
 bindsym $mod+$i3-wm.binding.look_selector exec $i3-wm.program.look_selector
 
+
+###############################################################################
+# wallpaper
+###############################################################################
+
+## Wallpaper // Select Shuf // <Alt> w ##
+set_from_resource $i3-wm.binding.wallpaper.shuf i3-wm.binding.wallpaper.shuf Mod1+w
+set_from_resource $i3-wm.program.wallpaper.shuf i3-wm.program.wallpaper.shuf feh --bg-fill --randomize ~/Pictures/Wallpaper
+bindsym $i3-wm.binding.wallpaper.shuf exec $i3-wm.program.wallpaper.shuf
+
+## Wallpaper // Select Default // <Alt><Ctrl> w ##
+set_from_resource $i3-wm.binding.wallpaper.default i3-wm.binding.wallpaper.default Mod1+Ctrl+w
+set_from_resource $i3-wm.program.wallpaper.default i3-wm.program.wallpaper.default feh --bg-fill ~/Pictures/Wallpaper/default.jpg
+bindsym $i3-wm.binding.wallpaper.default exec $i3-wm.program.wallpaper.default
+
+
 ###############################################################################
 # Window and Workspace Navigation
 ###############################################################################
