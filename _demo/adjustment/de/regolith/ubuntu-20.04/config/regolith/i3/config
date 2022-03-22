@@ -269,6 +269,10 @@ bindsym Mod1+Ctrl+$ws7_key workspace number $ws17
 bindsym Mod1+Ctrl+$ws8_key workspace number $ws18
 bindsym Mod1+Ctrl+$ws9_key workspace number $ws19
 
+## Navigate // Next Workspace // <Alt> a ##
+set_from_resource $i3-wm.binding.ws_prev i3-wm.binding.ws_prev Mod1+a
+bindsym $i3-wm.binding.ws_prev workspace prev
+
 ## Navigate // Next Workspace // <Win> Tab ##
 set_from_resource $i3-wm.binding.ws_next i3-wm.binding.ws_next Tab
 bindsym $mod+$i3-wm.binding.ws_next workspace next
