@@ -879,7 +879,7 @@ bindsym Mod1+grave layout toggle tabbed stacking
 bindsym Mod1+Tab layout toggle split
 
 
-## Switch to Stacking
+## Switch to floating
 ## Win + `
 bindsym Mod4+grave floating toggle
 
@@ -888,7 +888,7 @@ bindsym Mod4+grave floating toggle
 bindsym Mod4+Tab layout toggle all
 
 
-## Layout 
+## Layout toggle max
 ## Win + w
 bindsym Mod4+w layout toggle tabbed split
 
